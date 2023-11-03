@@ -1,4 +1,7 @@
 {
-    "u" : true,
-    "boostorg/boost": { "@" : "boost-1.82.0", "u" : true }
+    "u": true,
+    "boostorg/boost": {
+        "@": "boost-1.80.0",
+        "u": true
+    }
 }
