@@ -158,6 +158,13 @@ add_definitions(-DVSOMEIP_INTERNAL_SUPPRESS_DEPRECATED)
 find_package(Threads REQUIRED)
 
 # Boost
+Include(FetchContent)
+FetchContent_Declare(
+    Boost
+    GIT_REPOSITORY https://github.com/boostorg/boost.git
+    GIT_TAG        32da69a36f84c5255af8a994951918c258bac601 # Boost 1.80
+    )
+FetchContent_MakeAvailable(Boost)
 find_package( Boost 1.55 COMPONENTS system thread filesystem REQUIRED )
 if(${CMAKE_SYSTEM_NAME} MATCHES "QNX")
     include_directories(${Boost_INCLUDE_DIR} )
