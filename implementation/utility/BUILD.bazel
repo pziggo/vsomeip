@@ -1,0 +1,19 @@
+cc_library(
+    name = "wrappers",
+    srcs = ["src/wrappers.cpp"],
+)
+
+cc_library(
+    name = "utility",
+    srcs = ["src/utility.cpp"],
+    hdrs = [
+        "include/byteorder.hpp",
+        "include/utility.hpp",
+    ],
+)
+
+cc_library(
+    name = "criticalsection",
+    srcs = ["src/criticalsection.cpp"],
+    hdrs = ["include/criticalsection.hpp"],
+)

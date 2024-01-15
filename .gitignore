@@ -1,4 +1,5 @@
 /CMakeFiles
+/bazel-*
 /build*/*
 /examples/hello_world/build
 /.vscode/

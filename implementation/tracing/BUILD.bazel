@@ -1,0 +1,27 @@
+cc_library(
+    name = "channel",
+    srcs = ["src/channel_impl.cpp"],
+    hdrs = [
+        "include/channel_impl.hpp",
+        "include/enumeration_types.hpp",
+    ],
+)
+
+cc_library(
+    name = "connector",
+    srcs = ["src/connector_impl.cpp"],
+    hdrs = [
+        "include/connector_impl.hpp",
+        "include/defines.hpp",
+    ],
+    deps = [
+        ":channel",
+        "//implementation/utility"
+    ],
+)
+
+cc_library(
+    name = "header",
+    srcs = ["src/header.cpp"],
+    hdrs = ["include/header.hpp"],
+)
