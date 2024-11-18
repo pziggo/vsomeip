@@ -183,11 +183,20 @@ add_definitions(-DVSOMEIP_INTERNAL_SUPPRESS_DEPRECATED)
 # Dependencies
 ################################################################################
 
+Include(FetchContent)
+
 # Threads
 find_package(Threads REQUIRED)
 
 # Boost
-find_package( Boost 1.66 COMPONENTS system thread filesystem REQUIRED )
+set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+FetchContent_Declare(Boost
+  GIT_REPOSITORY https://github.com/boostorg/boost.git
+  GIT_TAG        boost-1.80.0
+  OVERRIDE_FIND_PACKAGE
+)
+FetchContent_MakeAvailable(Boost)
+find_package( Boost 1.80 COMPONENTS system thread filesystem REQUIRED )
 if(${CMAKE_SYSTEM_NAME} MATCHES "QNX")
     include_directories(${Boost_INCLUDE_DIR} )
 else()
@@ -222,6 +231,15 @@ find_package(PkgConfig)
 
 # DLT
 if(VSOMEIP_ENABLE_DLT EQUAL 1)
+set(WITH_DLT_CONSOLE OFF CACHE BOOL "" FORCE)
+set(WITH_DLT_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(WITH_DLT_TESTS OFF CACHE BOOL "" FORCE)
+FetchContent_Declare(DLT
+  GIT_REPOSITORY https://github.com/COVESA/dlt-daemon.git
+  GIT_TAG        v2.18.10
+  OVERRIDE_FIND_PACKAGE
+)
+FetchContent_MakeAvailable(DLT)
 pkg_check_modules(DLT "automotive-dlt >= 2.11")
 if(DLT_FOUND)
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSE_DLT")
